@@ -1,5 +1,8 @@
 import os
 os.getenv('OPENAI_API_KEY')
+VTEX_API_KEY = os.getenv('VTEX_API_KEY')
+VTEX_API_TOKEN = os.getenv('VTEX_API_TOKEN')
+VTEX_STORE = os.getenv('VTEX_STORE')
 
 from litellm import completion
 import requests
@@ -14,8 +17,8 @@ def getNameAndIdFromTemplate(template_obj):
     }
 
 def getTemplateList():
-    url = "https://jujacociunas.myvtex.com/api/template-render/pvt/templates/getlist"
-    response = requests.get(url, headers = { "VtexIdclientAutCookie": "" })
+    url = "https://" + VTEX_STORE + ".myvtex.com/api/template-render/pvt/templates/getlist"
+    response = requests.get(url, headers = { "X-VTEX-API-AppKey": VTEX_API_KEY, "X-VTEX-API-AppToken": VTEX_API_TOKEN })
     # Check the status code (200 indicates success)
     if response.status_code == 200:
         # print("Request successful!")
