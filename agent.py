@@ -1,5 +1,5 @@
 import os
-os.environ['OPENAI_API_KEY'] = ""
+os.getenv('OPENAI_API_KEY')
 
 from litellm import completion
 from typing import List, Dict
